@@ -1,0 +1,25 @@
+<div *ngIf="user" class="user-card">
+  <img [src]="(user.picture?.large || '').replace('http://','https://')"
+       alt="Foto de {{user.name.first}}"
+       class="user-img" />
+
+  <h2 class="user-name">
+    {{user.name.first}} {{user.name.last}}
+  </h2>
+
+  <p class="user-info">
+    <strong>Email:</strong> {{user.email}}
+  </p>
+
+  <p class="user-info">
+    <strong>Ubicación:</strong> {{user.location.city}}, {{user.location.country}}
+  </p>
+
+  <p class="user-info">
+    <strong>Edad:</strong> {{user.dob.age}}
+  </p>
+</div>
+
+<div *ngIf="!user" class="loading">
+  <p>Cargando...</p>
+</div>

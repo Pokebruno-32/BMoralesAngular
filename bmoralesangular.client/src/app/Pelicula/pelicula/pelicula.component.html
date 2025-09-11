@@ -1,0 +1,50 @@
+
+<div class="container mt-4">
+  <h1 class="text-center mb-4"> Películas Favoritas </h1>
+
+  <div class="row">
+    <div class="col-md-4" *ngFor="let peli of favoritas">
+      <div class="card mb-4 shadow-sm">
+        <img [src]="peli.poster_path ? 'https://image.tmdb.org/t/p/w500' + peli.poster_path : 'assets/no-image.png'"
+             class="card-img-top"
+             alt="{{ peli.title }}">
+
+        <div class="card-body">
+          <h5 class="card-title">
+            {{peli.title}}
+          </h5>
+
+          <p class="card-text">
+            {{peli.overview}}
+          </p>
+          <button class="btn btn-link p-0"
+                  (click)="toogleFavorito(peli)"
+                  [ngStyle]="{
+          color: peli.esFavorita ? 'gold' : 'lightgray',
+          fontSize: '24px'
+        }"
+                  title="{{ peli.esFavorita ? 'Quitar de favoritas' : 'Agregar a favoritas' }}">
+            ★
+          </button>
+
+          <a href="#" class="btn btn-primary">Ver más</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center mb-4">
+      <button class="btn btn-outline-primary me-2"
+              [disabled]="vistaActual === 'trending'"
+              (click)="vistaActual = 'trending'; CargarTrending()">
+        🔥 Trending
+      </button>
+
+      <button class="btn btn-outline-warning"
+              [disabled]="vistaActual === 'favoritas'"
+              (click)="vistaActual = 'favoritas'; cargarFavoritas()">
+        ⭐ Favoritas
+      </button>
+    </div>
+
+  </div>
+</div>

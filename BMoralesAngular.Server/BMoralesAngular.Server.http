@@ -1,0 +1,6 @@
+@BMoralesAngular.Server_HostAddress = http://localhost:5227
+
+GET {{BMoralesAngular.Server_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

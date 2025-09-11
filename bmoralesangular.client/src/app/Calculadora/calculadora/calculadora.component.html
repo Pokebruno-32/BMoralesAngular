@@ -1,0 +1,20 @@
+<p>calculadora works!</p>
+<div class="calculadora">
+  <div class="botones">
+    <button (click)="sumar()" class="btn-success">+</button>
+    <button (click)="restar()" class="btn-info">-</button>
+    <button (click)="multiplicar()" class="btn-warning">*</button>
+    <button (click)="dividir()" class="btn-primary">/</button>
+  </div>
+
+
+  <div class="entradas">
+    <input type="number" [(ngModel)]="numero1" placeholder="Número 1"/>
+    <input type="number" [(ngModel)]="numero2" placeholder="Número 2"/>
+  </div>
+
+  <div class="resultado">
+    <h3>Resultado: {{resultado}}</h3>
+  </div>
+
+</div>
