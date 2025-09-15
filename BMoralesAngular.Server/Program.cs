@@ -1,3 +1,5 @@
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -6,6 +8,13 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+
+var conString = builder.Configuration.GetConnectionString("BMoralesNCapas") ??
+     throw new InvalidOperationException("Connection string 'BMoralesNCapas'" +
+    " not found.");
+    builder.Services.AddDbContext<DL.BmoralesNcapasContext>(options =>
+    options.UseSqlServer(conString));
 
 var app = builder.Build();
 

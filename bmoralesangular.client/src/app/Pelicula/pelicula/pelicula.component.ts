@@ -15,16 +15,7 @@ export class PeliculaComponent {
   //  { titulo: 'Interstellar', descripcion: '...', imagen: '...', id: 157336 },
   //  { titulo: 'The Dark Knight', descripcion: '...', imagen: '...', id: 155 }
   //];
-  peliculas = [
-    {
-      title: 'Inception',
-      overview: '...',
-      poster_path: '/qmDpIHrmpJINaRKAfWQfftjCdyi.jpg',
-      id: 27205
-    }
-  ];
-
-  constructor(private movie: MovieService) { }
+    constructor(private movie: MovieService) { }
 
   agregarFavoritos(peli: any) {
     const nuevoEstado = !peli.esFavorita;
@@ -48,6 +39,7 @@ export class PeliculaComponent {
     //});
     this.CargarTrending()
   }
+  peliculas: any[] = [];
 
   CargarTrending() {
     this.movie.getTrending().subscribe({
@@ -85,10 +77,13 @@ export class PeliculaComponent {
     this.movie.MarcarFavorito(peli.id, nuevoEstado).subscribe({
       next: res => {
         peli.esFavorita = nuevoEstado;
-        console.log('Favorito actualizado:', res);
+
+        if (!nuevoEstado && this.vistaActual === 'favoritas') {
+          this.favoritas = this.favoritas.filter(p => p.id !== peli.id);
+        }
+        console.log('Favoritas actualizadas', res);
       },
       error: err => console.error('Error al actualizar favorito:', err)
     });
   }
-
 }
